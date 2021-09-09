@@ -4,11 +4,16 @@ const PORT = 4000;
 
 const app = express();
 
-const handleHome = (req, res) => {
-  return res.send("hello World");
+const logger = (req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
 };
 
-app.get("/", handleHome);
+const handleHome = (req, res) => {
+  return res.send("I love node");
+};
+
+app.get("/", logger, handleHome);
 
 const handleListening = () => console.log("server 4000");
 
