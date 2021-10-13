@@ -5,14 +5,14 @@
 /login => Login
 /search => Search
 
+/users/:id => see User
+/users/logout
+/users/edit => Edit My Profile
+/users/delete => Delete My Profile
 /users/join
-/users/login
-/users/edit => Edit user
-/users/delete => Delete user
 
 /videos/search
-/videos/watch => Watch Video
-/videos/edit => Edit Video
-/videos/delete => Delete Video
-/videos/commnet => Comment on a video
-/videos/comments/delete => Delete A Comment of a Video
+/videos/:id => Watch Video
+/videos/:id/edit => Edit Video
+/videos/:id/delete => Delete Video
+/videos/upload => Upload Video
