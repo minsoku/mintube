@@ -9,6 +9,7 @@ const PORT = 4000;
 const app = express();
 app.use(morgan("dev"));
 
+app.set("view engine", "pug");
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/user", userRouter);
