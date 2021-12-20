@@ -1,4 +1,10 @@
 extends base.pug
+include mixins/video
 
 block content
-  h1 Home
+  h2 안녕
+  ul
+    each i in videos
+      +video(i)
+    else
+      li 비디오 없다 ~ 
