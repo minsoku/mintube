@@ -1,3 +1,5 @@
+import req from "express/lib/request";
+
 let videos = [
   {
     title: "First Video",
@@ -30,9 +32,11 @@ export const trending = (req, res) => {
 export const watch = (req, res) => {
   const { id } = req.params;
   const video = videos[id - 1];
-  return res.render("watch", { pageTitle: `Watch ${video.title}` });
+  return res.render("watch", { pageTitle: `Watch ${video.title}`, video });
 };
-export const edit = (req, res) => res.render("edit", { pageTitle: "edit" });
-export const search = (req, res) => res.send("search");
-export const upload = (req, res) => res.send("upload");
-export const deleteVideo = (req, res) => res.send("deleteVideo");
+export const getEdit = (req, res) => {
+  const { id } = req.params;
+  const video = videos[id - 1];
+  return res.render("edit", { pageTitle: `Edit , ${video.title}`, video });
+};
+export const postEdit = (req, res) => {};
