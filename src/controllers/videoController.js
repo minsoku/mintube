@@ -25,7 +25,6 @@ export const getUpload = (req, res) => {
   return res.render("upload", { pageTitle: "Upload" });
 };
 
-// 비디오 배열에 추가 할 거임
 export const postUpload = (req, res) => {
   videos.push(newVideo);
   return res.redirect("/");
