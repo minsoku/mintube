@@ -12,7 +12,7 @@ export const watch = async (req, res) => {
   if (!video) {
     return res.render("404", { pageTitle: "video not found ! " });
   }
-  return res.render("watch", { pageTitle: video.title, video  });
+  return res.render("watch", { pageTitle: video.title, video });
 };
 
 export const getEdit = async (req, res) => {
@@ -29,13 +29,15 @@ export const postEdit = async (req, res) => {
   const { title, description, hashtags } = req.body;
   const video = await Video.exists({ _id: id });
   if (!video) {
-    return res.render("404", { page: 'Post Not Found !'})
+    return res.render("404", { page: "Post Not Found !" });
   }
   await Video.findByIdAndUpdate(id, {
     title,
     description,
-    hashtags: hashtags.split(",").map((word) => (word.startsWith("#") ? word : `#${word}`))
-  })
+    hashtags: hashtags
+      .split(",")
+      .map((word) => (word.startsWith("#") ? word : `#${word}`)),
+  });
   return res.redirect(`/videos/${id}`);
 };
 
@@ -50,15 +52,18 @@ export const postUpload = async (req, res) => {
       title,
       description,
       createdAt: Date.now(),
-      hashtags: hashtags.split(",").map(word => `#${word}`),
+      hashtags,
       meta: {
         views: 0,
-        rating: 0
-      }
+        rating: 0,
+      },
     });
     return res.redirect("/");
   } catch (error) {
     console.log(error);
-    return res.render("upload", { pageTitle: "Upload", errorMessage: error._message });
+    return res.render("upload", {
+      pageTitle: "Upload",
+      errorMessage: error._message,
+    });
   }
 };
