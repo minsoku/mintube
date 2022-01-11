@@ -44,6 +44,7 @@ export const getUpload = (req, res) => {
 
 export const postUpload = async (req, res) => {
   const { title, description, hashtags } = req.body;
+<<<<<<< HEAD
   try {
     await Video.create({
       title,
@@ -68,6 +69,18 @@ export const postUpload = async (req, res) => {
 export const deleteVideo = async (req, res) => {
   const { id } = req.params;
   await Video.findByIdAndDelete(id);
+=======
+  await Video.create({
+    title,
+    description,
+    createdAt: Date.now(),
+    hashtags: hashtags.split(",").map(word => `#${word}`),
+    meta: {
+      views: 0,
+      rating: 0
+    }
+  })
+>>>>>>> 964cfa767a467ea0c7b7a8221a842617effb6bb3
   return res.redirect("/");
 };
 
