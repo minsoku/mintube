@@ -78,7 +78,7 @@ export const search = async (req, res) => {
     videos = await Video.find({
       title: {
         $regex: new RegExp(keyword, "i"),
-      },
+      };
     });
   }
   return res.render("search", { pageTitle: "Search", videos });
